@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     public GameObject tittleScreen;
     public TextMeshProUGUI livesText;
     private int lives;
+
     // Start is called before the first frame update
     void Start()
     {

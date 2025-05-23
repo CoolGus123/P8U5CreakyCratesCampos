@@ -7,12 +7,14 @@ public class Target : MonoBehaviour
     public ParticleSystem explosionParticle;
     public int pointValue;
     private GameManager gameManager;
-    private float minSpeed = 12;
-    private float maxSpeed = 16;
+    private float minSpeed = 14;
+    private float maxSpeed = 18;
     private float maxTorque = 10;
     private float xRange = 4;
     private float ySpawnPos = -6;
     private Rigidbody targetRb;
+
+    public bool isBad = false; // <- Make sure this exists
     // Start is called before the first frame update
     void Start()
     {
@@ -49,8 +51,17 @@ public class Target : MonoBehaviour
        if (gameManager.isGameActive)
         {
             gameManager.UpdateScore(pointValue);
-            Destroy(gameObject);
             Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation);
+            Destroy(gameObject);
+            if (isBad)
+            {
+                gameManager.UpdateLives(-1);
+            }
+            else
+            {
+                gameManager.UpdateScore(pointValue);
+            }
+
         }
     }
 
